@@ -1,4 +1,5 @@
 #!/usr/bin/env python2
+# coding: utf-8
 #from cgi import parse_qs, escape
 from urlparse import parse_qs
 
