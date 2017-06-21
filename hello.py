@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 #from cgi import parse_qs, escape
 from urlparse import parse_qs
 
