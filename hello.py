@@ -8,11 +8,13 @@ def wsgi_application(environ, start_response):
 		('Content-Type', 'text/plain')
 	]
 
-	params = parse_qs(environ['QUERY_STRING'])
+	#params = parse_qs(environ['QUERY_STRING'])
 	
-	body = ''
-	for k in sorted(params.iterkeys()):
-		body += k + "=".join(params[k]) + "\r\n"
+	#body = ''
+	#for k in sorted(params.iterkeys()):
+	#	body += k + "=".join(params[k]) + "\r\n"
+
+	body = [bytes(i + '\r\n', 'ascii') for i in environ['QUERY_STRING'].split('&')]
 
 	start_response(status, headers)
-	return [ body ]
+	return body 
