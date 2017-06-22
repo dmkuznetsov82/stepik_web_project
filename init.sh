@@ -12,6 +12,7 @@ sudo /etc/init.d/nginx restart
 #sudo pip install --upgrade gunicorn
 
 cd ask
-gunicorn -c ../etc/ask.gunicorn.conf ask.wsgi:application &
+#gunicorn -c ../etc/ask.gunicorn.conf ask.wsgi:application &
+gunicorn --bind=0.0.0.0:8000 ask.wsgi:application &
 
 sudo /etc/init.d/mysql start
