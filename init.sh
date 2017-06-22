@@ -9,6 +9,6 @@ sudo /etc/init.d/nginx restart
 #gunicorn -c etc/hello.gunicorn.conf hello:wsgi_application
 
 cd ask
-gunicorn -c ../etc/ask_local.gunicorn.conf ask.wsgi:application &
+gunicorn -c ../etc/ask.gunicorn.conf ask.wsgi:application &
 
 sudo /etc/init.d/mysql start
