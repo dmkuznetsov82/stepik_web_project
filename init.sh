@@ -8,6 +8,9 @@ sudo /etc/init.d/nginx restart
 #sudo /etc/init.d/gunicorn restart
 #gunicorn -c etc/hello.gunicorn.conf hello:wsgi_application
 
+#sudo pip install --upgrade django
+#sudo pip install --upgrade gunicorn
+
 cd ask
 gunicorn -c ../etc/ask.gunicorn.conf ask.wsgi:application &
 
