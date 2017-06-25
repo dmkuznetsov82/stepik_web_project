@@ -21,8 +21,8 @@ class Question(models.Model):
 
     objects = QuestionManager()
 
-    def __unicode__(self):
-        return self.title
+    # def __unicode__(self):
+    #     return self.title
 
 
 class Answer(models.Model):
@@ -31,6 +31,6 @@ class Answer(models.Model):
     question = models.ForeignKey(Question)
     author = models.ForeignKey(User, null=True)
 
-    def __unicode__(self):
-        return self.text
+    # def __unicode__(self):
+    #     return self.text
 
