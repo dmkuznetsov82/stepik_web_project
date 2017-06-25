@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }} — главная{% endblock %}
+{% block content %}
+    {% for question in questions %}
+        <div class="question">
+            <p>{{ question.title }}</p>
+            <p>{{ question.text }}</p>
+        </div>
+    {% endfor %}
+    <nav>
+        <ul class="pagination">
+        {% for p in paginator.page_range %}
+            {% if p.number == page.number %}
+                <li class="active">
+            {% else %}
+                <li>
+            {% endif %}
+                <a href = "{{ paginator.baseurl }}{{ p.number }}">
+                    {{ p.number }}
+                </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endblock %}
