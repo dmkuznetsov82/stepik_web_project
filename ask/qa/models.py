@@ -31,6 +31,6 @@ class Answer(models.Model):
     question = models.ForeignKey(Question)
     author = models.ForeignKey(User, null=True)
 
-    # def __unicode__(self):
-    #     return self.text
+    def __str__(self):
+        return self.text
 

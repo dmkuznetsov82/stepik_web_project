@@ -6,6 +6,7 @@
         <p>{{ question.text }}</p>
     </div>
     {% for answer in question.answer_set.all %}
+        <p>{{ answer.author }}</p>
         <p>{{ answer }}</p>
     {% endfor %}
 {% endblock %}
