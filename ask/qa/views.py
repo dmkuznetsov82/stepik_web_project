@@ -79,6 +79,7 @@ def ask_add(request):
     if request.method == "POST":
         form = AskForm(request.POST)
         if form.is_valid():
+            form._user = request.user
             post = form.save()
             url = post.get_url()
             return HttpResponseRedirect(url)
