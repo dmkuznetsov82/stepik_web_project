@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_GET
 
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.paginator import Paginator
 
+from qa.forms import AskForm, AnswerForm
 from qa.models import Question
 
 # Create your views here.
@@ -47,11 +48,34 @@ def popular(request):
         'questions': page.object_list,
         'page': page, })
 
-#@require_GET
 def question(request, id):
     try:
         q = Question.objects.get(id=id)
     except Question.DoesNotExist:
         raise Http404
-    return render(request, 'question.html',
-        {'question': q, })
+
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            _ = form.save()
+            url = q.get_url()
+            return HttpResponseRedirect(url)
+    else:
+        form = AnswerForm()
+        # form = AnswerForm(initial={'question': q.id })
+
+    return render(request, 'question.html', {
+        'question': q,
+        'form' : form })
+
+def ask_add(request):
+    if request.method == "POST":
+        form = AskForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            url = post.get_url()
+            return HttpResponseRedirect(url)
+    else:
+        form = AskForm()
+        return render(request, 'ask_add_form.html',
+                      { 'form' : form })

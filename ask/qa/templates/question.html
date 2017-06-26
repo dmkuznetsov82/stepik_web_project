@@ -1,12 +1,23 @@
 {% extends "base.html" %}
-{% block title %}{{ block.super }} — {{ question.title }}{% endblock %}
+{% block title %}{{ block.super }} — {{ question }}{% endblock %}
 {% block content %}
     <div class="question">
-        <p>{{ question.title }}</p>
+        <p>{{ question }}</p>
         <p>{{ question.text }}</p>
     </div>
+    <hr>
     {% for answer in question.answer_set.all %}
         <p>{{ answer.author }}</p>
         <p>{{ answer }}</p>
     {% endfor %}
+    <hr>
+    <form method="post" action="{{ question.get_url }}">
+        <fieldset>
+            {% csrf_token %}
+            {{ form.as_p }}
+        </fieldset>
+        <button type="submit">Ответить</button>
+    </form>
+{#    <hr>#}
+{#    <div><a href="/ask/">Ask a new question</a></div>#}
 {% endblock %}

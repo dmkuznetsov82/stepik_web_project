@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }} — Новый вопрос{% endblock %}
+{% block content %}
+    <form method="post" action="/ask/">
+        <fieldset>
+            {% csrf_token %}
+            {{ form.as_p }}
+        </fieldset>
+        <button type="submit">Отправить</button>
+    </form>
+{% endblock %}
