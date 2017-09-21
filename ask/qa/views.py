@@ -30,9 +30,7 @@ def index(request):
     return render(request, 'index.html', {
         'paginator': paginator,
         'questions': page.object_list,
-        'page': page,
-        'user': request.user,
-        'session': request.session, })
+        'page': page, })
 
 @require_GET
 def popular(request):
